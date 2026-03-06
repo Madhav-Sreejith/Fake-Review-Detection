@@ -69,4 +69,4 @@ Intelligent Trust Framework
 
 ---
 
-> *This project was developed as part of the 19CSE352 Business Analytics course. All analysis is for academic purposes.*
+> *This project was developed as part of the 23CSE452 Business Analytics course. All analysis is for academic purposes.*
