@@ -54,13 +54,6 @@ Intelligent Trust Framework
 
 **Tools & Technologies:** Python (Pandas, Scikit-learn, NLP libraries), Excel, Tableau, ARIMA (temporal analysis)
 
----
-### Milestones
-- ✅ **Milestone 1** – Data acquisition, cleaning, and EDA complete *(End of Sprint 1)*
-- ✅ **Milestone 2** – Feature engineering, modeling, and trust scoring complete *(End of Sprint 3)*
-- ✅ **Milestone 3** – Explainability, business impact analysis, and final presentation *(End of Sprint 4)*
-
----
 
 ## ⚠️ Risk Assessment
 
