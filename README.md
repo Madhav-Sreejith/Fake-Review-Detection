@@ -26,7 +26,7 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 |------|------|-----------------|
 | M. Balaji Sakthivel | Project Manager | Data Acquisition & Initial Analysis |
 | M. Hasini Reddy | Data Engineer | Data Cleaning & Feature Preparation |
-| Madhav | Data Analyst | Sentiment Analysis & Text Analytics |
+| Madhav Sreejith | Data Analyst | Sentiment Analysis & Text Analytics |
 | Shivani | Analytics Engineer | Fake Review Identification & Trust Metrics |
 | Kavin K | Business Analyst | Visualization, Interpretation & Validation |
 
