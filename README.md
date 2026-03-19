@@ -100,3 +100,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 3: Methodology - Feature Engineering Insights
 
+
+#### 3.1 Linguistic Patterns: Identifying recurring deceptive syntax.
+
