@@ -106,3 +106,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 3.2 Behavioral Metrics: Review frequency and rating skewness analysis.
 
+
+### Step 4: Methodology - Machine Learning Model Design
+
