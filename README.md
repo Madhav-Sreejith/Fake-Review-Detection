@@ -6,29 +6,42 @@
 ## 📌 Project Overview
 Online reviews significantly shape consumer trust and purchasing decisions. This project introduces a data-driven system to detect deceptive reviews, assess reviewer credibility, and quantify the impact of manipulation on consumer trust. By integrating **NLP text analytics**, **behavioral analysis**, and **trust modeling**, we deliver actionable insights for e-commerce platforms and businesses.
 
-## 📂 Project Structure
+## 📂 Complete Project Structure
 ```text
-Fake-Review-Detection/                     # Root Project Directory
-├── dashboard images/                      # Exported visuals for documentation
+Fake-Review-Detection/                     # Root Project Folder 🛡️
+├── dashboard images/                      # Individual visualization exports 🖼️
+│   ├── Fake vs Genuine Reviews.png       # Model comparison chart
 │   ├── Final_dashboard.png                # Full BI Dashboard preview
-│   └── Rating_distribution.png            # Statistical distribution
-├── docs/                                  # Stage-by-stage detailed documentation
-│   ├── 01_DATA_ACQUISITION.md             # Sourcing & Ingestion details
+│   ├── Rating_distribution.png            # Global rating stats
+│   ├── Review Distribution by App.png    # Cross-platform breakdown
+│   ├── Review_trend_over_time.png        # Time-series spike detector
+│   ├── Sentiment_vs_rating.png            # Correlation visualization
+│   └── Top_suspicious_reviewers.png       # RCI-flagged user list
+├── docs/                                  # Strategic Documentation 📜
+│   ├── 01_DATA_ACQUISITION.md             # Sourcing & Ingestion logic
 │   ├── 02_EXPLORATORY_ANALYSIS.md         # Statistical deep-dives
 │   ├── 03_DATA_CLEANING.md                # NLP Pre-processing steps
 │   ├── 04_SENTIMENT_ANALYSIS.md           # Polarity & Subjectivity logic
 │   ├── 05_FAKE_REVIEW_DETECTION.md        # ML Engine & RCI Score
 │   └── 06_BUSINESS_INTELLIGENCE.md        # Business value & Insights
-├── notebooks/                             # Iterative development notebooks
+├── notebooks/                             # Step-by-Step Development 📓
 │   ├── 01_Data_Acquisition.ipynb          # Raw data fetching
-│   ├── 02_EDA.ipynb                       # Statistical visualization
-│   └── 03_Sentiment_Analysis.ipynb        # NLP experimentation
-├── api.py                                 # ML Engine Integration Endpoint
-├── fake_review_model.pkl                  # Trained Random Forest Model
-├── requirements.txt                       # Python dependencies
-└── README.md                              # Main Project Navigation
+│   ├── 02_Data_Cleaning.ipynb             # NLP refining & noise removal
+│   ├── 03_Sentiment_Analysis.ipynb        # Polarity & Subjectivity experiments
+│   ├── 04_Fake_Detection.ipynb            # ML model training (Random Forest)
+│   └── 05_Visualization.ipynb             # Chart & Graph generation
+├── api.py                                 # Core ML Engine Integration Endpoint
+├── ARCHITECTURE.md                        # Technical design & hierarchy
+├── COMPREHENSIVE_DOCUMENTATION.md         # Combined project overview
+├── DATA_INSIGHTS.md                       # High-level analytical report
+├── DEPLOY.md                              # Environment setup guide
+├── fake_review_model.pkl                  # Trained Random Forest model
+├── feature_names.pkl                      # Saved model feature vectors
+├── Fake_Review_Analytics.twbx              # Tableau BI Workbook
+└── requirements.txt                       # Python dependency list
 ```
 
+---
 ## 🛡️ Project Methodology
 **`Data Acquisition` ➔ `EDA` ➔ `Data Cleaning` ➔ `Sentiment Analysis` ➔ `ML Detection` ➔ `BI Dashboard`**
 
