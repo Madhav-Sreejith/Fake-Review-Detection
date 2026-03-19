@@ -90,3 +90,5 @@ Intelligent Trust Framework
  
 
 *Note: Circles indicate priority level (High/Medium/Low).*
+
+- Dataset: 70,000+ localized product reviews.
