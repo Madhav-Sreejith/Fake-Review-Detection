@@ -1,53 +1,57 @@
 import React from 'react';
-import { Lightbulb, TrendingDown, CheckCircle2 } from 'lucide-react';
+import { Lightbulb, ShieldAlert, Zap, Target } from 'lucide-react';
+import { dashboardData } from '../data/dashboardData';
 
 const InsightsPanel = () => {
   return (
-    <div className="glass-card p-6 rounded-2xl flex flex-col">
-      <h3 className="text-lg font-semibold mb-6 flex items-center gap-2">
-        <Lightbulb className="text-yellow-400 w-5 h-5" />
-        Business Insights
+    <div className="glass-panel p-8 flex flex-col relative overflow-hidden">
+      <div className="absolute top-0 right-0 w-32 h-32 bg-orange-500/5 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
+      
+      <h3 className="text-sm font-black uppercase tracking-[0.2em] text-slate-500 mb-8 flex items-center gap-2">
+        <Target className="text-orange-500 w-4 h-4" />
+        Intelligence Report
       </h3>
 
-      <div className="space-y-4 flex-1">
+      <div className="mb-8">
+        <div className="text-5xl font-black text-white mb-2">{dashboardData.metrics.trustScore}%</div>
+        <p className="text-xs font-bold text-orange-500/80 uppercase">Portfolio Trust Health</p>
+      </div>
+
+      <div className="space-y-6 flex-1">
         <InsightItem 
-          type="warning"
-          title="Rating Inflation"
-          description="Avg. ratings are inflated by 0.5 stars due to coordinated fake positive clusters."
+          icon={<ShieldAlert className="text-pink-500" />}
+          title="Reputational Risk"
+          description={`Average ratings inflated by ${dashboardData.metrics.ratingInflation} stars.`}
         />
         <InsightItem 
-          type="success"
-          title="Spam Filtering"
-          description="Your detection rate is up by 12% following the latest model update."
+          icon={<Zap className="text-yellow-400" />}
+          title="Flooding Efficiency"
+          description="Detection model latency decreased to 400ms per record."
         />
         <InsightItem 
-          type="info"
-          title="Critical App Risk"
-          description="App 'Vatakara Rice' shows high risk with 32 suspicious reviews in 48 hours."
+          icon={<Lightbulb className="text-blue-400" />}
+          title="Market Sentiment"
+          description="Fake positive clusters identified in recent app updates."
         />
       </div>
 
-      <div className="mt-8 p-4 bg-orange-500/10 rounded-xl border border-orange-500/20">
-        <p className="text-xs text-orange-400 font-bold uppercase mb-1">Recommended Action</p>
-        <p className="text-sm">Initiate deep-audit for top 3 apps in Anomaly Density chart.</p>
+      <div className="mt-10 p-5 rounded-2xl bg-gradient-to-br from-white/5 to-transparent border border-white/10">
+        <h5 className="text-[10px] font-black text-slate-500 uppercase tracking-widest mb-2">Priority Action</h5>
+        <p className="text-sm font-medium text-slate-200">Initiate mass-audit for top 3 high-risk applications.</p>
       </div>
     </div>
   );
 };
 
-const InsightItem = ({ type, title, description }) => {
-  const icons = {
-    warning: <TrendingDown className="text-red-400 w-4 h-4 mt-1" />,
-    success: <CheckCircle2 className="text-green-400 w-4 h-4 mt-1" />,
-    info: <Lightbulb className="text-blue-400 w-4 h-4 mt-1" />
-  };
-
+const InsightItem = ({ icon, title, description }) => {
   return (
-    <div className="flex gap-3">
-      {icons[type]}
+    <div className="flex gap-4">
+      <div className="mt-1 flex-shrink-0">
+        {React.cloneElement(icon, { size: 16 })}
+      </div>
       <div>
-        <h5 className="text-sm font-semibold">{title}</h5>
-        <p className="text-xs text-slate-400 leading-relaxed">{description}</p>
+        <h5 className="text-sm font-bold text-slate-100">{title}</h5>
+        <p className="text-xs text-slate-400 leading-relaxed font-medium">{description}</p>
       </div>
     </div>
   );
