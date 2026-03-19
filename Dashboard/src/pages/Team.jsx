@@ -45,7 +45,7 @@ const Team = () => {
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
       <div className="mb-20">
          <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Project <span className="text-indigo-500">Core Team</span></h2>
-         <p className="text-slate-400 font-medium">Academic Research Group 9 | 19CSE352 Business Analytics</p>
+         <p className="text-slate-400 font-medium">Academic Research Group 9 | 23CSE452 Business Analytics</p>
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-24">

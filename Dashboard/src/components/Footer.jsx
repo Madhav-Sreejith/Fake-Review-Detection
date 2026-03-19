@@ -6,7 +6,7 @@ const Footer = () => (
       <div className="flex flex-col md:flex-row justify-between items-center gap-8">
         <div className="text-center md:text-left">
           <h3 className="text-white font-bold text-xl mb-2 tracking-tight">Fake Review Detection & Trust Analytics</h3>
-          <p className="text-slate-400 text-sm max-w-sm">Group 9 | 19CSE352 | Amrita Vishwa Vidyapeetham, Coimbatore</p>
+          <p className="text-slate-400 text-sm max-w-sm">Group 9 | 23CSE452 | Amrita Vishwa Vidyapeetham, Coimbatore</p>
         </div>
         <div className="flex flex-col items-center md:items-end gap-2">
           <p className="text-slate-500 text-[10px] font-black uppercase tracking-[0.2em] mb-1">Academic Project</p>

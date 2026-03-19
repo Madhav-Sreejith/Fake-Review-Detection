@@ -34,7 +34,7 @@ const Home = () => {
           animate={{ opacity: 1, scale: 1 }}
           className="mb-8 px-5 py-2 bg-indigo-500/10 border border-indigo-500/20 rounded-full text-indigo-400 text-xs font-black tracking-[0.2em] uppercase inline-block"
         >
-          Business Analytics Project | 19CSE352
+          Business Analytics Project | 23CSE452
         </motion.div>
         
         <h1 className="text-6xl md:text-8xl font-black text-white tracking-tighter mb-8 leading-[0.9]">
@@ -43,9 +43,6 @@ const Home = () => {
           Trust Analytics
         </h1>
         
-        <p className="max-w-3xl mx-auto text-lg md:text-xl text-slate-400 font-medium mb-12 leading-relaxed">
-          Amrita Vishwa Vidyapeetham | Research-backed identification of deceptive patterns using Isolation Forest and Multi-Model consensus.
-        </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-24">
           <Link to="/dashboard" className="bg-indigo-600 hover:bg-indigo-500 text-white px-10 py-5 rounded-3xl font-black transition-all flex items-center justify-center gap-2 group shadow-xl shadow-indigo-600/20">
