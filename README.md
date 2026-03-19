@@ -118,3 +118,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 5: Visualizations & Analysis Results
 
+
+#### 5.1 Analysis: ![Rating Dist](dashboard%20images/Rating_distribution.png)
+
