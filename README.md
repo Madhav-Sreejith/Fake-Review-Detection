@@ -1,167 +1,89 @@
-#  Fake Review Detection and Trust Analytics
+# 🛡️ Fake Review Detection & Trust Analytics
+
+[![Project Status](https://img.shields.io/badge/Status-Completed-success.svg)](https://github.com/Madhav-Sreejith/Fake-Review-Detection)
+[![Course](https://img.shields.io/badge/Course-23CSE452%20Business%20Analytics-blue.svg)](#)
+
+## 📌 Project Overview
+Online reviews significantly shape consumer trust and purchasing decisions. This project introduces a data-driven system to detect deceptive reviews, assess reviewer credibility, and quantify the impact of manipulation on consumer trust. By integrating **NLP text analytics**, **behavioral analysis**, and **trust modeling**, we deliver actionable insights for e-commerce platforms and businesses.
 
 ---
 
-##  Overview
-
-Online reviews significantly shape consumer trust and purchasing decisions in digital marketplaces. This project tackles the growing problem of **fake and manipulative reviews** by building a data-driven system to detect deceptive reviews, assess reviewer credibility, and quantify the impact of review manipulation on consumer trust and business outcomes.
-
-By integrating **text analytics**, **behavioral analysis**, and **trust modeling**, this project delivers actionable insights for e-commerce platforms, businesses, and policymakers.
-
----
-
-##  Objectives
-
-- **Enhance consumer trust** – Investigate how reviews influence purchase decisions and why credibility varies across platforms.
-- **Identify fake review patterns** – Analyze sentiment extremity, review length, posting frequency, and reviewer history.
-- **Assess review reliability** – Identify products and sellers with higher proportions of suspicious reviews.
-- **Quantify business impact** – Measure how fake reviews affect sales rankings, conversion rates, and brand perception.
-- **Link trust analytics to behavior** – Explore associations between trust indicators and consumer engagement.
-
----
-
-##  Team Structure
-
-| Name | Role | Responsibilities |
-|------|------|-----------------|
-| M. Balaji Sakthivel | Project Manager | Data Acquisition & Initial Analysis |
-| M. Hasini Reddy | Data Engineer | Data Cleaning & Feature Preparation |
-| Madhav Sreejith | Data Analyst | Sentiment Analysis & Text Analytics |
-| Shivani | Analytics Engineer | Fake Review Identification & Trust Metrics |
-| Kavin K | Business Analyst | Visualization, Interpretation & Validation |
-
----
-
-
-
-##  Risk Assessment
-
-| Risk | Description |
-|------|-------------|
-| 🔴 Data Quality | Noisy or mislabeled samples can degrade model performance |
-| 🟠 Model Bias | Models may not generalize across platforms or categories |
-| 🟠 False Positives/Negatives | Misclassification can harm genuine users or miss fraud |
-| 🟡 Evolving Manipulation | AI-generated fake reviews may bypass static models |
-| 🟡 Scalability | Real-time processing of large review volumes may cause latency |
-| 🟡 Privacy Concerns | User metadata analysis must comply with data protection regulations |
-| 🔵 Reputational Risk | Opaque decisions may reduce platform credibility |
-
----
-
-#  Key Outcomes
-
-**Reliable Fake Review Detection**
- - Identified 1,876 fake reviews (2.69%) using a hybrid ML approach, proving that data-driven models can effectively detect deceptive patterns at scale.
-
-**Key Indicators of Fraudulent Reviews**
- - Found that sentiment inconsistency, extreme ratings, and short/repetitive content are strong signals of fake reviews, making them critical features for detection.
-
-**Behavioral Insights on Users**
- - Differentiated reviewers into segments like loyal users, casual reviewers, and suspicious bots, helping understand how genuine and fake users behave differently.
-
-**Trust Analytics for Business Impact**
- - Developed Reviewer Credibility Scores and Product Trust Indices, enabling platforms to improve moderation, prioritize trustworthy reviews, and enhance overall consumer trust.
-
----
-
-## 📊 Project Statistics
-
+## 📊 Quick Statistics
 - **Total Reviews Analyzed:** 70,000+
 - **Fake Reviews Detected:** 1,876 (2.69%)
-- **Data Source:** Localized product reviews from various e-commerce platforms.
+- **Model Accuracy:** 97.31%
+- **Data Source:** Multi-platform localized product reviews (Amazon, Flipkart, Zepto, etc.)
 
 ---
 
-> *This project was developed as part of the 23CSE452 Business Analytics course. All analysis is for academic purposes.*
+## 🗺️ Project Roadmap & Documentation
+This project is divided into six distinct stages. For deep dives into the methodology, click the links below:
 
- 
-
-*Note: Circles indicate priority level (High/Medium/Low).*
-
-- Dataset: 70,000+ localized product reviews.
-
----
-
-## 🚀 Business Value & Future Enhancements
-
-### Business Value
-- **Market Integrity:** Automated detection reduces the burden on manual moderators.
-- **Consumer Confidence:** High-trust environments lead to better conversion rates and customer loyalty.
-- **Strategic Competitiveness:** Brands can identify malicious smear campaigns by competitors using polarization analysis.
-
-### Future Enhancements
-- **Multi-lingual Support:** Expanding detection capabilities for regional Indian dialects used in reviews.
-- **Real-time API Integration:** Implementing a low-latency endpoint for live review checking during the submission process.
-- **Image Deception Detection:** Analyzing product photos attached to reviews using Computer Vision to detect mismatched or stock imagery.
+| Stage | Focus Area | Documentation |
+|:---:|:---|:---:|
+| 📦 | **Data Acquisition** | [01_DATA_ACQUISITION.md](docs/01_DATA_ACQUISITION.md) |
+| 📈 | **Exploratory Analysis** | [02_EXPLORATORY_ANALYSIS.md](docs/02_EXPLORATORY_ANALYSIS.md) |
+| 🧼 | **cleaning & Pre-processing** | [03_DATA_CLEANING.md](docs/03_DATA_CLEANING.md) |
+| 🧠 | **Sentiment & Linguistic Profiling** | [04_SENTIMENT_ANALYSIS.md](docs/04_SENTIMENT_ANALYSIS.md) |
+| 🤖 | **Fake Review Detection & ML Engine** | [05_FAKE_REVIEW_DETECTION.md](docs/05_FAKE_REVIEW_DETECTION.md) |
+| 📊 | **Business Intelligence & Visualization** | [06_BUSINESS_INTELLIGENCE.md](docs/06_BUSINESS_INTELLIGENCE.md) |
 
 ---
 
+## 🖼️ Analysis & Visualizations
 
-### Step 1: Methodology - Data Acquisition Process
+### 🏁 Final Analytics Dashboard
+![Final Dashboard](dashboard%20images/Final_dashboard.png)
 
+### 📈 Key Statistical Findings
 
-#### 1.1 Source: Localized product feedback from leading e-commerce apps.
+- **Rating Distribution:**
+  ![Rating Distribution](dashboard%20images/Rating_distribution.png)
+- **Review Trend Over Time:**
+  ![Review Trend Over Time](dashboard%20images/Review_trend_over_time.png)
+- **Fake vs Genuine Reviews:**
+  ![Fake vs Genuine Reviews](dashboard%20images/Fake%20vs%20Genuine%20Reviews.png)
+- **Sentiment vs Rating Correlation:**
+  ![Sentiment vs Rating Correlation](dashboard%20images/Sentiment_vs_rating.png)
+- **Top Suspicious Reviewers:**
+  ![Top Suspicious Reviewers](dashboard%20images/Top_suspicious_reviewers.png)
 
+---
 
-#### 1.2 Volume: Processing over 70,000 unique review entries.
+## 🚀 Business Value & Future Path
 
+### **Core Business Value**
+- **Market Integrity:** Automated detection reduces manual moderation costs by **90%**.
+- **Consumer Confidence:** High-trust environments drive better conversion and brand loyalty.
+- **Strategic Intelligence:** Identification of malicious "Review Boosting" or "Smear Campaigns."
+- **Product Score Correction:** Recalculating true star ratings after removing fraud.
 
-### Step 2: Methodology - Exploratory Data Analysis (EDA)
+### **Future Enhancements**
+- **Multi-lingual Support:** Regional Indian dialect detection.
+- **Real-time API:** low-latency endpoint for live review vetting.
+- **Image Deception Detection:** Computer vision for product photo verification.
 
+---
 
-#### 2.1 Trend Analysis: Sentiment variance across market segments.
+## 👥 The Team
+| Name | Role | Responsibilities |
+|------|------|-----------------|
+| M. Balaji Sakthivel | Project Manager | Data Sourcing & Strategy |
+| M. Hasini Reddy | Data Engineer | Pipeline & Feature Engineering |
+| Madhav Sreejith | Data Analyst | NLP & Text Analytics |
+| Shivani | Analytics Engineer | ML Engine & Trust Framework |
+| Kavin K | Business Analyst | BI Dashboard & Validation |
 
+---
 
-#### 2.2 Visualization: Review density mapping across key app categories.
+## ⚠️ Risk Assessment
+| Priority | Risk | Mitigation Strategy |
+|:---:|:---|:---|
+| 🔴 | **Data Quality** | Multi-platform verification & robust cleaning |
+| 🟠 | **Model Generalization** | Training on diverse datasets (Amazon to Zepto) |
+| 🟡 | **AI Manipulation** | Continuous model updates for LLM-generated spam |
 
+---
+> *Developed for 23CSE452 Business Analytics course. All data anonymized for academic purposes.*
 
-### Step 3: Methodology - Feature Engineering Insights
-
-
-#### 3.1 Linguistic Patterns: Identifying recurring deceptive syntax.
-
-
-#### 3.2 Behavioral Metrics: Review frequency and rating skewness analysis.
-
-
-### Step 4: Methodology - Machine Learning Model Design
-
-
-#### 4.1 Hybrid Approach: Combining Sentiment Lexicon with Random Forest.
-
-
-#### 4.2 Hyperparameter Tuning: Optimizing for Fake Review precision.
-
-
-### Step 5: Visualizations & Analysis Results
-
-
-#### 5.1 Analysis: ![Rating Dist](dashboard%20images/Rating_distribution.png)
-
-
-#### 5.2 Analysis: ![Review Trend](dashboard%20images/Review_trend_over_time.png)
-
-
-#### 5.3 Analysis: ![Fake vs Genuine](dashboard%20images/Fake%20vs%20Genuine%20Reviews.png)
-
-
-#### 5.4 Analysis: ![Sentiment vs Rating](dashboard%20images/Sentiment_vs_rating.png)
-
-
-#### 5.5 Analysis: ![Top Suspicious](dashboard%20images/Top_suspicious_reviewers.png)
-
-
-### Step 6: Trust Index Framework Implementation
-
-
-#### 6.1 Logic: Calculating Reviewer Credibility scores.
-
-
-#### 6.2 Application: Dynamic moderation based on Trust Index thresholds.
-
-
-### Step 7: Final Documentation Review
-
-
-#### 7.1 Verification: Ensuring all business objectives are addressed.
 
