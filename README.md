@@ -103,3 +103,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 3.1 Linguistic Patterns: Identifying recurring deceptive syntax.
 
+
+#### 3.2 Behavioral Metrics: Review frequency and rating skewness analysis.
+
