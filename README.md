@@ -88,3 +88,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 1.2 Volume: Processing over 70,000 unique review entries.
 
+
+### Step 2: Methodology - Exploratory Data Analysis (EDA)
+
