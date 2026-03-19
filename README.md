@@ -139,3 +139,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 6.1 Logic: Calculating Reviewer Credibility scores.
 
+
+#### 6.2 Application: Dynamic moderation based on Trust Index thresholds.
+
