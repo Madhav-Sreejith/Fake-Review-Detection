@@ -85,3 +85,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 1.1 Source: Localized product feedback from leading e-commerce apps.
 
+
+#### 1.2 Volume: Processing over 70,000 unique review entries.
+
