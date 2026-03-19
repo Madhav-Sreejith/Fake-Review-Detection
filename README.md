@@ -97,3 +97,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 2.2 Visualization: Review density mapping across key app categories.
 
+
+### Step 3: Methodology - Feature Engineering Insights
+
