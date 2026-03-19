@@ -1,233 +1,237 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Search, ShieldCheck, ShieldAlert, Info, ListChecks, ArrowRight } from 'lucide-react';
+import { ShieldCheck, ShieldAlert, Info, ListChecks, ArrowRight, Loader2, Star, AlertCircle } from 'lucide-react';
 
 const Demo = () => {
-  const [review, setReview] = useState('');
-  const [rating, setRating] = useState(5);
-  const [analysis, setAnalysis] = useState(null);
+    const [review, setReview] = useState('');
+    const [rating, setRating] = useState(5);
+    const [loading, setLoading] = useState(false);
+    const [result, setResult] = useState(null);
+    const [error, setError] = useState(null);
 
-  const GENERIC_PHRASES = [
-    "best app", "good app", "nice app", "must download",
-    "excellent", "highly recommend", "best product",
-    "value for money", "worth buying", "five star"
-  ];
+    const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
-  const runAnalysis = () => {
-    if (!review.trim()) return;
+    const examples = [
+        { 
+            text: "Great app! Highly recommend it to everyone.", 
+            rating: 5,
+            desc: "Suspiciously short positive review"
+        },
+        { 
+            text: "Nice app highly recommend must download best app excellent five star value for money", 
+            rating: 5,
+            desc: "Keyword-stuffed suspicious review"
+        },
+        { 
+            text: "The delivery was delayed by 3 days and customer support never responded to my complaint. The product quality was below expectations and packaging was damaged. Very disappointed with the overall experience.", 
+            rating: 1,
+            desc: "Detailed negative (likely genuine) review"
+        }
+    ];
 
-    let score = 0;
-    const signals = [];
+    const runAnalysis = async () => {
+        if (!review.trim()) return;
+        
+        setLoading(true);
+        setError(null);
+        setResult(null);
 
-    const wordCount = review.split(/\s+/).length;
-    const charCount = review.length;
-    const exclamationCount = (review.match(/!/g) || []).length;
-    const capsCount = (review.match(/[A-Z]/g) || []).length;
-    const capRatio = capsCount / charCount || 0;
-    const hasURL = /http/.test(review);
-    const hasRepeat = /(.)\1{2,}/.test(review.toLowerCase());
+        try {
+            const response = await fetch(`${API_URL}/predict`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ review_text: review, rating: rating })
+            });
 
-    const genericMatches = GENERIC_PHRASES.filter(phrase => 
-      review.toLowerCase().includes(phrase)
-    );
+            const data = await response.json();
 
-    // Scoring Logic
-    if (wordCount < 5) {
-      score += 2;
-      signals.push({ label: "Low word count (< 5)", impact: "+2" });
-    }
-    if (exclamationCount > 3) {
-      score += 2;
-      signals.push({ label: "Excessive exclamation marks", impact: "+2" });
-    }
-    if (capRatio > 0.4) {
-      score += 2;
-      signals.push({ label: "High capital letter ratio", impact: "+2" });
-    }
-    if (hasURL) {
-      score += 3;
-      signals.push({ label: "Unsafe external link (URL)", impact: "+3" });
-    }
-    if (genericMatches.length > 0) {
-      score += 2;
-      signals.push({ label: `Generic marketing phrases (${genericMatches.length})`, impact: "+2" });
-    }
-    if (hasRepeat) {
-      score += 1;
-      signals.push({ label: "Suspicious character repetitions", impact: "+1" });
-    }
-    if (rating === 1 || rating === 5) {
-      score += 1;
-      signals.push({ label: "Extreme rating pattern (1 or 5)", impact: "+1" });
-    }
-    if (wordCount < 3 && rating === 5) {
-      score += 2;
-      signals.push({ label: "Extreme rating with minimal text", impact: "+2" });
-    }
+            if (!response.ok) {
+                throw new Error(data.error || 'Server error occurred');
+            }
 
-    setAnalysis({
-      score,
-      signals,
-      features: {
-        wordCount,
-        charCount,
-        exclamationCount,
-        capRatio: (capRatio * 100).toFixed(1) + "%",
-        genericCount: genericMatches.length
-      }
-    });
-  };
+            setResult(data);
+        } catch (err) {
+            setError(err.message === 'Failed to fetch' 
+                ? 'API unavailable. Please ensure your Flask server is running at ' + API_URL 
+                : err.message);
+        } finally {
+            setLoading(false);
+        }
+    };
 
-  const getStatus = (score) => {
-    if (score >= 5) return { label: "FAKE SUSPECTED", color: "bg-red-500", icon: <ShieldAlert /> };
-    if (score >= 3) return { label: "SUSPICIOUS", color: "bg-orange-500", icon: <Info /> };
-    return { label: "LIKELY GENUINE", color: "bg-emerald-500", icon: <ShieldCheck /> };
-  };
+    return (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div className="mb-16">
+                <h2 className="text-4xl font-black text-white mb-4 tracking-tight">
+                    API <span className="text-indigo-500">Live Prediction Demo</span>
+                </h2>
+                <p className="text-slate-400 font-medium">Test our real Random Forest model via the Flask REST API.</p>
+            </div>
 
-  const examples = [
-    { text: "Great app!", rating: 5 },
-    { text: "Nice app highly recommend must download best app", rating: 5 },
-    { text: "The delivery was delayed by 3 days and customer support never responded properly. Very disappointed with the overall experience and packaging quality.", rating: 1 }
-  ];
-
-  return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
-      <div className="mb-16">
-         <h2 className="text-4xl font-black text-white mb-4 tracking-tight">Trust <span className="text-indigo-500">Validation Demo</span></h2>
-         <p className="text-slate-400 font-medium">Test our rule-based detection engine with your own entries.</p>
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-        {/* Input Side */}
-        <div className="space-y-8">
-           <div className="bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700/50 shadow-xl">
-              <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6">Review Input Buffer</label>
-              <textarea 
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
-                placeholder="Paste review text here..."
-                className="w-full h-40 bg-slate-900 border border-slate-700 rounded-2xl p-6 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all font-medium leading-relaxed mb-6"
-              />
-              
-              <div className="flex items-center gap-6 mb-8">
-                 <div className="flex-1">
-                    <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Assigned Rating</label>
-                    <select 
-                      value={rating}
-                      onChange={(e) => setRating(parseInt(e.target.value))}
-                      className="w-full bg-slate-900 border border-slate-700 rounded-xl p-3 text-white font-bold"
-                    >
-                      {[1,2,3,4,5].map(n => <option key={n} value={n}>{n} Stars ★</option>)}
-                    </select>
-                 </div>
-                 <button 
-                  onClick={runAnalysis}
-                  className="px-10 py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-black rounded-2xl transition-all shadow-xl shadow-indigo-600/10 flex items-center gap-2 group mt-8"
-                 >
-                   ANALYZE <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-                 </button>
-              </div>
-           </div>
-
-           <div className="bg-slate-800/30 p-8 rounded-[2rem] border border-slate-700/30">
-              <h4 className="text-xs font-black text-slate-600 uppercase tracking-widest mb-6 border-b border-slate-700/30 pb-4">Standardized Test Cases</h4>
-              <div className="space-y-3">
-                 {examples.map((ex, i) => (
-                   <button 
-                    key={i} 
-                    onClick={() => { setReview(ex.text); setRating(ex.rating); }}
-                    className="w-full text-left p-4 bg-slate-900/50 hover:bg-indigo-600/10 border border-slate-700 rounded-xl text-xs font-bold text-slate-400 hover:text-indigo-400 transition-all flex items-center justify-between group"
-                   >
-                     <span className="truncate pr-4">{ex.text}</span>
-                     <ArrowRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-                   </button>
-                 ))}
-              </div>
-           </div>
-        </div>
-
-        {/* Results Side */}
-        <div className="min-h-[500px]">
-           <AnimatePresence mode="wait">
-              {!analysis ? (
-                <motion.div 
-                  key="empty"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  className="h-full border-2 border-dashed border-slate-700 rounded-[2.5rem] flex flex-col items-center justify-center text-slate-600 p-12 text-center"
-                >
-                   <Search size={48} className="mb-6 opacity-20" />
-                   <h4 className="font-black text-lg mb-2">Awaiting Input Signal</h4>
-                   <p className="text-xs font-bold leading-relaxed max-w-xs uppercase tracking-widest opacity-50">
-                      Detection engine is idle. Input review text and click analyze to start classification.
-                   </p>
-                </motion.div>
-              ) : (
-                <motion.div 
-                  key="analysis"
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="h-full bg-slate-800 p-10 rounded-[2.5rem] border border-slate-700/50"
-                >
-                   <div className="flex items-center justify-between mb-12">
-                      <div className="flex items-center gap-4">
-                         <div className={`p-4 rounded-2xl ${getStatus(analysis.score).color} text-white`}>
-                            {React.cloneElement(getStatus(analysis.score).icon, { size: 24 })}
-                         </div>
-                         <div>
-                            <h4 className="text-xs font-black text-slate-500 uppercase tracking-[0.2em] mb-1">Detection Result</h4>
-                            <div className={`text-xl font-black ${getStatus(analysis.score).color.replace('bg-', 'text-')}`}>
-                               {getStatus(analysis.score).label}
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 text-slate-200">
+                {/* Input Side */}
+                <div className="space-y-8">
+                    <div className="bg-slate-800 p-8 rounded-[2.5rem] border border-slate-700/50 shadow-xl">
+                        <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-6 border-b border-slate-700 pb-2">Review Content</label>
+                        <textarea 
+                            value={review}
+                            onChange={(e) => setReview(e.target.value)}
+                            placeholder="Paste your review text here..."
+                            rows={6}
+                            className="w-full bg-slate-900 border border-slate-700 rounded-2xl p-6 text-slate-200 focus:outline-none focus:ring-2 focus:ring-indigo-500/50 transition-all font-medium leading-relaxed mb-6"
+                        />
+                        
+                        <div className="flex flex-col sm:flex-row items-center gap-6 mb-4">
+                            <div className="flex-1 w-full">
+                                <label className="block text-[10px] font-black text-slate-500 uppercase tracking-widest mb-4">Select Rating</label>
+                                <div className="flex gap-2">
+                                    {[1, 2, 3, 4, 5].map((star) => (
+                                        <button
+                                            key={star}
+                                            onClick={() => setRating(star)}
+                                            className="transition-transform active:scale-95"
+                                        >
+                                            <Star 
+                                                className={`w-8 h-8 ${star <= rating ? 'fill-yellow-400 text-yellow-400' : 'text-slate-600'}`} 
+                                            />
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
-                         </div>
-                      </div>
-                      <div className="text-right">
-                         <div className="text-3xl font-black text-white">{analysis.score}</div>
-                         <div className="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Suspicion Score</div>
-                      </div>
-                   </div>
+                            <button 
+                                onClick={runAnalysis}
+                                disabled={!review.trim() || loading}
+                                className={`w-full sm:w-auto px-10 py-5 font-black rounded-2xl transition-all shadow-xl flex items-center justify-center gap-3 mt-4 sm:mt-8 ${
+                                    loading 
+                                    ? 'bg-slate-700 text-slate-400 cursor-not-allowed' 
+                                    : 'bg-indigo-600 hover:bg-indigo-500 text-white shadow-indigo-600/20 active:scale-95'
+                                }`}
+                            >
+                                {loading ? (
+                                    <>
+                                        <Loader2 className="w-5 h-5 animate-spin" />
+                                        ANALYZING...
+                                    </>
+                                ) : (
+                                    <>
+                                        ANALYZE REVIEW <ArrowRight className="w-4 h-4" />
+                                    </>
+                                )}
+                            </button>
+                        </div>
+                    </div>
 
-                   <div className="mb-12">
-                      <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
-                         <ListChecks className="w-3 h-3 text-indigo-500" /> Signal Breakdown
-                      </h5>
-                      <div className="space-y-3">
-                         {analysis.signals.length === 0 && <p className="text-xs font-bold text-slate-600 py-4 border border-dashed border-slate-700 rounded-xl text-center">No suspicious signals detected</p>}
-                         {analysis.signals.map((s, i) => (
-                           <div key={i} className="flex items-center justify-between p-4 bg-slate-900 rounded-xl border-l-4 border-indigo-500">
-                              <span className="text-xs font-bold text-slate-200">{s.label}</span>
-                              <span className="text-xs font-black text-indigo-400 font-mono">{s.impact}</span>
-                           </div>
-                         ))}
-                      </div>
-                   </div>
+                    <div className="bg-slate-800/30 p-8 rounded-[2rem] border border-slate-700/30">
+                        <h4 className="text-xs font-black text-slate-600 uppercase tracking-widest mb-6 flex items-center gap-2">
+                            <ListChecks className="w-4 h-4" /> Sample Test Scenarios
+                        </h4>
+                        <div className="space-y-3">
+                            {examples.map((ex, i) => (
+                                <button 
+                                    key={i} 
+                                    onClick={() => { setReview(ex.text); setRating(ex.rating); setError(null); setResult(null); }}
+                                    className="w-full text-left p-4 bg-slate-900/50 hover:bg-slate-900 border border-slate-700/50 rounded-xl transition-all border-l-4 border-indigo-500/20 hover:border-l-indigo-500 group"
+                                >
+                                    <div className="flex items-center justify-between mb-1">
+                                        <span className="text-xs font-black text-indigo-400 tracking-wide uppercase">Scenario {i+1}</span>
+                                        <span className="text-[10px] font-bold text-slate-500 group-hover:text-indigo-500 transition-colors uppercase tracking-widest">
+                                            {ex.rating} STARS ★
+                                        </span>
+                                    </div>
+                                    <p className="text-xs font-medium text-slate-400 italic truncate italic">"{ex.text}"</p>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
 
-                   <div>
-                      <h5 className="text-[10px] font-black text-slate-400 uppercase tracking-[0.2em] mb-6 flex items-center gap-2">
-                         Computed Features
-                      </h5>
-                      <div className="grid grid-cols-2 gap-4">
-                         <FeatureBadge label="Word Count" value={analysis.features.wordCount} />
-                         <FeatureBadge label="Char Count" value={analysis.features.charCount} />
-                         <FeatureBadge label="Cap Ratio" value={analysis.features.capRatio} />
-                         <FeatureBadge label="Generic Phrases" value={analysis.features.genericCount} />
-                      </div>
-                   </div>
-                </motion.div>
-              )}
-           </AnimatePresence>
+                {/* Results Side */}
+                <div className="relative">
+                    <AnimatePresence mode="wait">
+                        {error && (
+                            <motion.div 
+                                key="error"
+                                initial={{ opacity: 0, y: 10 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                className="bg-red-500/10 border border-red-500/50 rounded-[2rem] p-8 flex items-start gap-4"
+                            >
+                                <AlertCircle className="text-red-500 w-6 h-6 flex-shrink-0" />
+                                <div>
+                                    <h4 className="text-red-500 font-black text-sm uppercase tracking-widest mb-1">Communication Error</h4>
+                                    <p className="text-red-200/80 text-xs font-medium leading-relaxed">{error}</p>
+                                </div>
+                            </motion.div>
+                        )}
+
+                        {!result && !error && (
+                            <motion.div 
+                                key="empty"
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="h-full min-h-[400px] border-2 border-dashed border-slate-700/50 rounded-[2.5rem] flex flex-col items-center justify-center text-center p-12"
+                            >
+                                <div className="w-20 h-20 bg-slate-800/50 rounded-full flex items-center justify-center mb-8 border border-slate-700">
+                                    <ShieldCheck size={32} className="text-slate-600" />
+                                </div>
+                                <h4 className="font-black text-white text-lg mb-2">Engine Ready</h4>
+                                <p className="text-xs font-bold text-slate-500 uppercase tracking-widest max-w-xs leading-loose">
+                                    Input review text on the left to activate the detection pipeline.
+                                </p>
+                            </motion.div>
+                        )}
+
+                        {result && !error && (
+                            <motion.div 
+                                key="result"
+                                initial={{ opacity: 0, scale: 0.95 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                className="bg-slate-800 p-10 rounded-[2.5rem] border border-slate-700/50 shadow-2xl h-full"
+                            >
+                                <div className="flex flex-col items-center text-center mb-10">
+                                    <div className={`mb-6 p-4 rounded-3xl ${result.prediction === 1 ? 'bg-red-500 shadow-lg shadow-red-500/20' : 'bg-emerald-500 shadow-lg shadow-emerald-500/20'}`}>
+                                        {result.prediction === 1 ? <ShieldAlert size={40} className="text-white" /> : <ShieldCheck size={40} className="text-white" />}
+                                    </div>
+                                    <h4 className="text-[10px] font-black text-slate-500 uppercase tracking-[0.3em] mb-2">Algorithm Verdict</h4>
+                                    <span className={`text-4xl font-black mb-1 ${result.prediction === 1 ? 'text-red-500' : 'text-emerald-500'}`}>
+                                        {result.label} SUSPECTED
+                                    </span>
+                                </div>
+
+                                <div className="mb-12 bg-slate-900 border border-slate-700 p-6 rounded-3xl">
+                                    <div className="flex justify-between items-end mb-4 px-1">
+                                        <span className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Confidence Index</span>
+                                        <span className={`text-2xl font-black ${result.prediction === 1 ? 'text-red-500' : 'text-emerald-500'}`}>{result.confidence}%</span>
+                                    </div>
+                                    <div className="w-full h-3 bg-slate-800 rounded-full overflow-hidden">
+                                        <motion.div 
+                                            initial={{ width: 0 }}
+                                            animate={{ width: `${result.confidence}%` }}
+                                            transition={{ duration: 1, ease: "easeOut" }}
+                                            className={`h-full rounded-full ${result.prediction === 1 ? 'bg-red-500' : 'bg-emerald-500'}`}
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="grid grid-cols-2 gap-4">
+                                    <ResultCard label="Word Count" value={result.word_count} />
+                                    <ResultCard label="VADER Score" value={result.sentiment_score} />
+                                    <ResultCard label="Inconsistency" value={result.inconsistency_score} />
+                                    <ResultCard label="Review Length" value={result.review_length} />
+                                </div>
+                            </motion.div>
+                        )}
+                    </AnimatePresence>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
-const FeatureBadge = ({ label, value }) => (
-  <div className="bg-slate-900 p-4 rounded-xl border border-slate-700">
-     <p className="text-[10px] font-bold text-slate-600 uppercase mb-1">{label}</p>
-     <p className="text-sm font-black text-white">{value}</p>
-  </div>
+const ResultCard = ({ label, value }) => (
+    <div className="bg-slate-900 border border-slate-700 p-5 rounded-2xl hover:border-indigo-500/30 transition-colors group">
+        <p className="text-[10px] font-black text-slate-600 uppercase tracking-widest mb-1 group-hover:text-indigo-400 transition-colors">{label}</p>
+        <p className="text-lg font-black text-white">{value}</p>
+    </div>
 );
 
 export default Demo;
