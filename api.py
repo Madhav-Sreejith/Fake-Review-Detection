@@ -70,6 +70,17 @@ def home():
 
 
 # ✅ Health check route
+@app.route('/debug/files', methods=['GET'])
+def debug_files():
+    import os
+    files = os.listdir('.')
+    return jsonify({
+        "cwd": os.getcwd(),
+        "files": files,
+        "exists_root_model": os.path.exists('fake_review_model.pkl'),
+        "exists_nb_model": os.path.exists(os.path.join('notebooks', 'fake_review_model.pkl'))
+    })
+
 @app.route('/health', methods=['GET'])
 def health():
     if load_resources():
