@@ -6,6 +6,29 @@
 ## 📌 Project Overview
 Online reviews significantly shape consumer trust and purchasing decisions. This project introduces a data-driven system to detect deceptive reviews, assess reviewer credibility, and quantify the impact of manipulation on consumer trust. By integrating **NLP text analytics**, **behavioral analysis**, and **trust modeling**, we deliver actionable insights for e-commerce platforms and businesses.
 
+## 📂 Project Structure
+```text
+Fake-Review-Detection/                     # Root Project Directory
+├── dashboard images/                      # Exported visuals for documentation
+│   ├── Final_dashboard.png                # Full BI Dashboard preview
+│   └── Rating_distribution.png            # Statistical distribution
+├── docs/                                  # Stage-by-stage detailed documentation
+│   ├── 01_DATA_ACQUISITION.md             # Sourcing & Ingestion details
+│   ├── 02_EXPLORATORY_ANALYSIS.md         # Statistical deep-dives
+│   ├── 03_DATA_CLEANING.md                # NLP Pre-processing steps
+│   ├── 04_SENTIMENT_ANALYSIS.md           # Polarity & Subjectivity logic
+│   ├── 05_FAKE_REVIEW_DETECTION.md        # ML Engine & RCI Score
+│   └── 06_BUSINESS_INTELLIGENCE.md        # Business value & Insights
+├── notebooks/                             # Iterative development notebooks
+│   ├── 01_Data_Acquisition.ipynb          # Raw data fetching
+│   ├── 02_EDA.ipynb                       # Statistical visualization
+│   └── 03_Sentiment_Analysis.ipynb        # NLP experimentation
+├── api.py                                 # ML Engine Integration Endpoint
+├── fake_review_model.pkl                  # Trained Random Forest Model
+├── requirements.txt                       # Python dependencies
+└── README.md                              # Main Project Navigation
+```
+
 ---
 
 ## 📊 Quick Statistics
