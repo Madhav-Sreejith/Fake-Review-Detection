@@ -64,6 +64,14 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ---
 
+## 📊 Project Statistics
+
+- **Total Reviews Analyzed:** 70,000+
+- **Fake Reviews Detected:** 1,876 (2.69%)
+- **Data Source:** Localized product reviews from various e-commerce platforms.
+
+---
+
 > *This project was developed as part of the 23CSE452 Business Analytics course. All analysis is for academic purposes.*
 
  
@@ -71,3 +79,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 *Note: Circles indicate priority level (High/Medium/Low).*
 
 - Dataset: 70,000+ localized product reviews.
+
+### Step 1: Methodology - Data Acquisition Process
+
