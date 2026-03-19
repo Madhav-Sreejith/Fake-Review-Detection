@@ -109,3 +109,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 4: Methodology - Machine Learning Model Design
 
+
+#### 4.1 Hybrid Approach: Combining Sentiment Lexicon with Random Forest.
+
