@@ -94,3 +94,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 2.1 Trend Analysis: Sentiment variance across market segments.
 
+
+#### 2.2 Visualization: Review density mapping across key app categories.
+
