@@ -133,3 +133,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 5.5 Analysis: ![Top Suspicious](dashboard%20images/Top_suspicious_reviewers.png)
 
+
+### Step 6: Trust Index Framework Implementation
+
