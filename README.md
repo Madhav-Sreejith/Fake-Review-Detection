@@ -29,6 +29,16 @@ Fake-Review-Detection/                     # Root Project Directory
 └── README.md                              # Main Project Navigation
 ```
 
+## 🛡️ Project Methodology
+**`Data Acquisition` ➔ `EDA` ➔ `Data Cleaning` ➔ `Sentiment Analysis` ➔ `ML Detection` ➔ `BI Dashboard`**
+
+1.  **Data Ingestion**: Harvesting 70,000+ localized reviews from Amazon, Flipkart, Zepto, and Shopsy.
+2.  **Exploratory Data Analysis**: Identifying statistical anomalies, rating skewness, and "Review Bursting" patterns.
+3.  **Advanced Pre-processing**: NLP pipeline involving tokenization, stopword removal, and lemmatization.
+4.  **Sentiment Profiling**: Applying lexicon-based scoring to detect rating-sentiment contradictions.
+5.  **Hybrid ML Detection**: Using a Random Forest engine to calculate the Reviewer Credibility Index (RCI).
+6.  **Business Intelligence**: Visualizing real-time fraud trends and product score corrections on a BI dashboard.
+
 ---
 
 ## 📊 Quick Statistics
@@ -99,12 +109,15 @@ This project is divided into six distinct stages. For deep dives into the method
 
 ---
 
-## ⚠️ Risk Assessment
-| Priority | Risk | Mitigation Strategy |
-|:---:|:---|:---|
-| 🔴 | **Data Quality** | Multi-platform verification & robust cleaning |
-| 🟠 | **Model Generalization** | Training on diverse datasets (Amazon to Zepto) |
-| 🟡 | **AI Manipulation** | Continuous model updates for LLM-generated spam |
+## ⚠️ Risk Assessment & Mitigation
+| Priority | Risk Category | Potential Impact | Mitigation Strategy |
+|:---:|:---|:---|:---|
+| 🔴 | **Data Quality & Labels** | Noisy data can weaken ML accuracy | Multi-source verification & robust cleaning pipelines |
+| 🟠 | **Model Generalization** | Favoring specific app UX patterns | Training on a diverse dataset (Q-Comm, Fashion, Marketplace) |
+| 🟠 | **AI-Generated Spam** | LLM-generated reviews bypassing filters | Dynamic RCI scoring based on linguistic complexity |
+| 🟡 | **System Scalability** | Dashboard latency with 70k+ records | Optimized data indexing & efficient pickle model loading |
+| 🟡 | **Privacy Compliance** | Accidental exposure of user PII | Complete anonymization & obfuscation of reviewer handles |
+| 🔵 | **False Positives** | Genuine reviews flagged as deceptive | Human-in-the-loop threshold for high-value moderation |
 
 ---
 > *Developed for 23CSE452 Business Analytics course. All data anonymized for academic purposes.*
