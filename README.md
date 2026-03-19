@@ -1,8 +1,8 @@
-# 🕵️ Fake Review Detection and Trust Analytics
+#  Fake Review Detection and Trust Analytics
 
 ---
 
-## 📌 Overview
+##  Overview
 
 Online reviews significantly shape consumer trust and purchasing decisions in digital marketplaces. This project tackles the growing problem of **fake and manipulative reviews** by building a data-driven system to detect deceptive reviews, assess reviewer credibility, and quantify the impact of review manipulation on consumer trust and business outcomes.
 
@@ -10,7 +10,7 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ---
 
-## 🎯 Objectives
+##  Objectives
 
 - **Enhance consumer trust** – Investigate how reviews influence purchase decisions and why credibility varies across platforms.
 - **Identify fake review patterns** – Analyze sentiment extremity, review length, posting frequency, and reviewer history.
@@ -20,7 +20,7 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ---
 
-## 👥 Team Structure
+##  Team Structure
 
 | Name | Role | Responsibilities |
 |------|------|-----------------|
@@ -32,30 +32,9 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ---
 
-## 🧪 Methodology
-
-```
-Raw Review Data
-      ↓
-Exploratory Data Analysis (EDA)
-      ↓
-Feature Engineering
-  ├── Textual Features (Sentiment, Linguistic Patterns)
-  └── Behavioral Features (Timing, Rating Deviation, Activity)
-      ↓
-Dimensionality Reduction (PCA) + Association Rule Mining
-      ↓
-Hybrid ML Models (Logistic Regression / SVM / Random Forest / LSTM / BERT)
-      ↓
-Intelligent Trust Framework
-  ├── Reviewer Credibility Scores
-  └── Product-Level Trust Indices
-```
-
-**Tools & Technologies:** Python (Pandas, Scikit-learn, NLP libraries), Excel, Tableau, ARIMA (temporal analysis)
 
 
-## ⚠️ Risk Assessment
+##  Risk Assessment
 
 | Risk | Description |
 |------|-------------|
@@ -69,7 +48,7 @@ Intelligent Trust Framework
 
 ---
 
-# 📈 Key Outcomes
+#  Key Outcomes
 
 **Reliable Fake Review Detection**
  - Identified 1,876 fake reviews (2.69%) using a hybrid ML approach, proving that data-driven models can effectively detect deceptive patterns at scale.
@@ -91,4 +70,4 @@ Intelligent Trust Framework
 
 *Note: Circles indicate priority level (High/Medium/Low).*
 
-- Dataset: 70,000+ localized product reviews.
+- Dataset: 70,000 localized product reviews.
