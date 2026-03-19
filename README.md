@@ -121,3 +121,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 5.1 Analysis: ![Rating Dist](dashboard%20images/Rating_distribution.png)
 
+
+#### 5.2 Analysis: ![Review Trend](dashboard%20images/Review_trend_over_time.png)
+
