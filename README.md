@@ -82,3 +82,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 1: Methodology - Data Acquisition Process
 
+
+#### 1.1 Source: Localized product feedback from leading e-commerce apps.
+
