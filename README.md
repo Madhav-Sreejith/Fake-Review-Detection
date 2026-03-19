@@ -136,3 +136,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 6: Trust Index Framework Implementation
 
+
+#### 6.1 Logic: Calculating Reviewer Credibility scores.
+
