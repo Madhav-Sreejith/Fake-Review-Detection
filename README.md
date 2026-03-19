@@ -69,4 +69,20 @@ Intelligent Trust Framework
 
 ---
 
+# 📈 Key Outcomes
+
+# Reliable Fake Review Detection
+Identified 1,876 fake reviews (2.69%) using a hybrid ML approach, proving that data-driven models can effectively detect deceptive patterns at scale.
+
+# Key Indicators of Fraudulent Reviews
+Found that sentiment inconsistency, extreme ratings, and short/repetitive content are strong signals of fake reviews, making them critical features for detection.
+
+# Behavioral Insights on Users
+Differentiated reviewers into segments like loyal users, casual reviewers, and suspicious bots, helping understand how genuine and fake users behave differently.
+
+# Trust Analytics for Business Impact
+Developed Reviewer Credibility Scores and Product Trust Indices, enabling platforms to improve moderation, prioritize trustworthy reviews, and enhance overall consumer trust.
+
+---
+
 > *This project was developed as part of the 23CSE452 Business Analytics course. All analysis is for academic purposes.*
