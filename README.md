@@ -91,3 +91,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 ### Step 2: Methodology - Exploratory Data Analysis (EDA)
 
+
+#### 2.1 Trend Analysis: Sentiment variance across market segments.
+
