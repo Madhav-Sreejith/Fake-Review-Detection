@@ -130,3 +130,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 5.4 Analysis: ![Sentiment vs Rating](dashboard%20images/Sentiment_vs_rating.png)
 
+
+#### 5.5 Analysis: ![Top Suspicious](dashboard%20images/Top_suspicious_reviewers.png)
+
