@@ -124,3 +124,6 @@ By integrating **text analytics**, **behavioral analysis**, and **trust modeling
 
 #### 5.2 Analysis: ![Review Trend](dashboard%20images/Review_trend_over_time.png)
 
+
+#### 5.3 Analysis: ![Fake vs Genuine](dashboard%20images/Fake%20vs%20Genuine%20Reviews.png)
+
