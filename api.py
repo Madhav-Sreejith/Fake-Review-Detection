@@ -28,7 +28,7 @@ def load_resources():
     global model, scaler
 
     if model is not None and scaler is not None:
-        return True
+        return True, "Success"
 
     model_filenames = [
         os.path.join('notebooks', 'fake_review_model.pkl'),
@@ -52,15 +52,17 @@ def load_resources():
                 scaler = pickle.load(f)
 
             print(f"✅ Model loaded from {model_path}")
-            return True
+            return True, "Success"
 
         except Exception as e:
-            print(f"❌ Error loading resources: {e}")
-            return False
+            error_msg = f"❌ Error loading resources: {str(e)}"
+            print(error_msg)
+            return False, error_msg
 
     else:
-        print("❌ Model files not found")
-        return False
+        error_msg = "❌ Model files not found"
+        print(error_msg)
+        return False, error_msg
 
 
 # ✅ ROOT ROUTE (CRITICAL for Render health check)
@@ -73,28 +75,33 @@ def home():
 @app.route('/debug/files', methods=['GET'])
 def debug_files():
     import os
+    success, message = load_resources()
     files = os.listdir('.')
     return jsonify({
         "cwd": os.getcwd(),
         "files": files,
+        "load_success": success,
+        "load_message": message,
         "exists_root_model": os.path.exists('fake_review_model.pkl'),
         "exists_nb_model": os.path.exists(os.path.join('notebooks', 'fake_review_model.pkl'))
     })
 
 @app.route('/health', methods=['GET'])
 def health():
-    if load_resources():
+    success, message = load_resources()
+    if success:
         return jsonify({"status": "ok", "model": "loaded"}), 200
     else:
-        return jsonify({"status": "error", "model": "not_loaded"}), 500
+        return jsonify({"status": "error", "model": "not_loaded", "message": message}), 500
 
 
 # ✅ Prediction route
 @app.route('/predict', methods=['POST'])
 def predict():
-    if not load_resources():
+    success, message = load_resources()
+    if not success:
         return jsonify({
-            "error": "Model files not found. Ensure .pkl files exist."
+            "error": f"Model files error: {message}"
         }), 500
 
     data = request.get_json()
