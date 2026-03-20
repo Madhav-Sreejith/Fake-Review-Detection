@@ -12,14 +12,15 @@ The core component of the system is a **Hybrid Machine Learning** Engine designe
     - **Precision** (Fake Reviews): 0.96
     - **Recall** (Fake Reviews): 0.92
     - **F1-Score** (Fake Reviews): 0.94
-    -**Macro Avg F1-Score**: 0.97
+    - **Macro Avg F1-Score**: 0.97
       The classification report indicates near-perfect performance for genuine reviews and strong detection capability for fake reviews, despite class imbalance.
     - **Detection Rate (Ratio)**: From the original 70,000 reviews, the engine successfully identified **1,876 fake reviews** (2.69% of the total).
 
 ## 5.3 Detection Logic: The Trust Index (RCI)
-Instead of just a binary "Yes" or "No," we created a **Reviewer Credibility Score (RCI)**. This score (0.0 to 1.0) is built on three pillars:
-**RCI Formula**: RCI = w₁·Consistency + w₂·Helpfulness + w₃·Behavior
+Instead of just a binary "Yes" or "No," we created a **Reviewer Credibility Score (RCI)**. 
+- **RCI Formula**: RCI = w₁·Consistency + w₂·Helpfulness + w₃·Behavior
 Where w₁ + w₂ + w₃ = 1
+This score (0.0 to 1.0) is built on three pillars:
 1. **Factor A (Consistency)**: Does the rating match the sentiment?
 2. **Factor B (Helpfulness)**: Do other users find the review useful?
 3. **Factor C (Behavior)**: Is the account posting reviews at a human-like frequency?
